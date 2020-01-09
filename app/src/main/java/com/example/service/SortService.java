@@ -13,18 +13,11 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class SortService extends Service {
-    private final static String TAG = "SortService";
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.d(TAG,"onCreate called");
     }
 
     public void sortArray (){
@@ -37,7 +30,6 @@ public class SortService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG,"onStartCommand called");
         sortArray();
         stopSelf();
         return START_STICKY;
@@ -45,7 +37,6 @@ public class SortService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d(TAG,"onDestroy called");
         super.onDestroy();
         Toast.makeText(this, "Array Sorted",
                 Toast.LENGTH_SHORT).show();
