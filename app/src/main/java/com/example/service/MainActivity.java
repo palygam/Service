@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     SortService sortService;
     boolean bound = false;
     private Button sortButton;
-    private TextView info;
+    private TextView infoTextView;
 
 
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        info = findViewById(R.id.app_name);
+        infoTextView = findViewById(R.id.app_name);
 
         sortButton = findViewById(R.id.sort_button);
         sortButton.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SortService.class);
                 bindService(intent, connection, Context.BIND_AUTO_CREATE);
                 if (bound) {
-                    info.setText(Arrays.toString(sortService.sortArray()));
+                    infoTextView.setText(Arrays.toString(sortService.sortArray()));
                 }
             }
         });
