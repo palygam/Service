@@ -15,18 +15,15 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-    SortService sortService;
-    boolean bound = false;
-    private Button sortButton;
-    private TextView infoTextView;
+    private SortService sortService;
+    private boolean bound = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        infoTextView = findViewById(R.id.app_name);
+        Button sortButton;
 
         sortButton = findViewById(R.id.sort_button);
         sortButton.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SortService.class);
                 bindService(intent, connection, Context.BIND_AUTO_CREATE);
                 if (bound) {
+                    TextView infoTextView = findViewById(R.id.info_text_view);
                     infoTextView.setText(Arrays.toString(sortService.sortArray()));
                 }
             }
